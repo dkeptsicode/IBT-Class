@@ -57,10 +57,16 @@
                 var heatMapData = [];
                 for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip headers
                     var columns = rows[i].split(',');
-                    var latitude = parseFloat(columns[2]); // Latitude is in column 2
-                    var longitude = parseFloat(columns[3]); // Longitude is in column 3
-                    var intensity = Math.random(); // Assign random intensity value
-                    heatMapData.push([latitude, longitude, intensity]);
+                    var city = columns[0];
+                    var latitude = parseFloat(columns[1]); // Latitude is in column 1
+                    var longitude = parseFloat(columns[2]); // Longitude is in column 2
+                    // Check if latitude and longitude are valid numbers
+                    if (!isNaN(latitude) && !isNaN(longitude)) {
+                        var intensity = Math.random(); // Assign random intensity value
+                        heatMapData.push([latitude, longitude, intensity]);
+                    } else {
+                        console.error('Invalid latitude or longitude for city:', city);
+                    }
                 }
 
                 // Create heatmap layer

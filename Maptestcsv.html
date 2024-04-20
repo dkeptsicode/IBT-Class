@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Heatmap</title>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Include Leaflet.heat plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+    <style>
+        body {
+            background-color: #111;
+            color: #ddd;
+        }
+
+        #map { /* Set the size of the map */
+            width: 800px;
+            height: 600px;
+            margin: 0 auto; /* Center the map horizontally */
+        }
+
+        /* Dark mode for Leaflet controls */
+        .leaflet-control {
+            color: #ddd;
+        }
+
+        .leaflet-bar a, .leaflet-bar a:hover {
+            color: #ddd;
+        }
+
+        .leaflet-popup-content {
+            color: #ddd;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div> <!-- Map container -->
+    <script>
+        // Initialize the map centered at Utah
+        var map = L.map('map').setView([39.32098, -111.093735], 7);
+
+        // Add OpenStreetMap as base layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Load CSV data and create heatmap
+        fetch('heatmap_data.csv')
+            .then(response => response.text())
+            .then(csvData => {
+                // Parse CSV data
+                var rows = csvData.split('\n');
+                var heatMapData = [];
+                for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip headers
+                    var columns = rows[i].split(',');
+                    var latitude = parseFloat(columns[2]); // Latitude is in column 2
+                    var longitude = parseFloat(columns[3]); // Longitude is in column 3
+                    var intensity = Math.random(); // Assign random intensity value
+                    heatMapData.push([latitude, longitude, intensity]);
+                }
+
+                // Create heatmap layer
+                var heat = L.heatLayer(heatMapData, {
+                    radius: 20, // Adjust radius for heatmap intensity
+                    blur: 15, // Adjust blur for heatmap intensity
+                    maxZoom: 10 // Limit heatmap visibility to certain zoom levels
+                }).addTo(map);
+            })
+            .catch(error => console.error('Error fetching CSV:', error));
+    </script>
+</body>
+</html>

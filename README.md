@@ -21,7 +21,7 @@ I utilized the following templates for the Website Project:
 # Assistance from ChatGPT
 
 - Code to make card image sizes and text boxes align in size
-   ```html
+`<! 
 <style>
     .card-img-top {
         height: 400px; /* Adjust the height of the images (This was done with help of ChatGPT)*/  
@@ -37,9 +37,10 @@ I utilized the following templates for the Website Project:
         height: 60px; /* Ensure the same height for all card titles(This was done with help of ChatGPT) */
     }
 </style>
+-->`
 
 - Code to have quotes randomly displayed at the top of the page (with guidance from me regarding the quotes and prompt engineering)
-
+`<! 
 <!-- Display random historic quote (This was done with help of ChatGPT) -->
 <div id="quote-container" class="container">
     <blockquote class="blockquote text-center">
@@ -73,9 +74,10 @@ I utilized the following templates for the Website Project:
     // Display a random quote when the page loads
     window.addEventListener('DOMContentLoaded', displayRandomQuote);
 </script>
-
+-->`
 - Code to have the leaflet map load coordinates from a CSV file in the directory instead of having the values hardcoded.
 
+`<! 
  // Load CSV data and create heatmap
 fetch('heatmap_data.csv')
     .then(response => response.text())
@@ -105,7 +107,7 @@ fetch('heatmap_data.csv')
         }).addTo(map);
     })
     .catch(error => console.error('Error fetching CSV:', error));
-
+-->`
 
 
 

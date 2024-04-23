@@ -36,12 +36,10 @@ I utilized the following templates for the Website Project:
     .card-title {
         height: 60px; /* Ensure the same height for all card titles(This was done with help of ChatGPT) */
     }
-</style>
--->`
-**
+</style>**
+
 - Code to have quotes randomly displayed at the top of the page (with guidance from me regarding the quotes and prompt engineering)
-**
-<!-- Display random historic quote (This was done with help of ChatGPT) -->
+**<!-- Display random historic quote (This was done with help of ChatGPT) -->
 <div id="quote-container" class="container">
     <blockquote class="blockquote text-center">
         <p id="quote"></p>
@@ -73,8 +71,7 @@ I utilized the following templates for the Website Project:
 
     // Display a random quote when the page loads
     window.addEventListener('DOMContentLoaded', displayRandomQuote);
-</script>
-**
+</script>**
 - Code to have the leaflet map load coordinates from a CSV file in the directory instead of having the values hardcoded.
 
 ** 
@@ -108,8 +105,35 @@ fetch('heatmap_data.csv')
     })
     .catch(error => console.error('Error fetching CSV:', error));
 **
+- Code to make search bar functional by connecting it to Google (Based on feedback to Website Challenge)
+**<script>
+                function search() {
+                    // Get the search query from the input field
+                    var searchQuery = document.getElementById('search-input').value;
+            
+                    // Construct the Google search URL
+                    var googleSearchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchQuery);
+            
+                    // Redirect the user to the Google search results page
+                    window.location.href = googleSearchUrl;
+            
+                    // Prevent the form from submitting to a different page
+                    event.preventDefault();
+                }
+            </script>**
 
+- Debugging the embeding of My Resume into an HTML File.
 
+**<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
+</head>
+<body>
+    <h1>David Keptsi's Resume</h1>
+    <embed src="Dkeptsi Resume 2024.pdf" type="application/pdf" width="100%" height="800px">
+</body>
+</html>**
 
 ```
 

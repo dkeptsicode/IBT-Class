@@ -49,14 +49,16 @@
                 <input id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            
             <script>
                 function search() {
                     // Get the search query from the input field
                     var searchQuery = document.getElementById('search-input').value;
             
-                    // Do something with the search query, such as displaying search results
-                    alert('Search query: ' + searchQuery);
+                    // Construct the Google search URL
+                    var googleSearchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchQuery);
+            
+                    // Redirect the user to the Google search results page
+                    window.location.href = googleSearchUrl;
             
                     // Prevent the form from submitting to a different page
                     event.preventDefault();
